@@ -285,43 +285,58 @@ day_columns = [
     'day', 'avg_score_day', 'colors_day'
 ]
 
-def exportar(in_tsv,
-             out_puffs='results/puffs.tsv',
-             out_inh='results/inhalers.tsv',
-             out_treat='results/treatments.tsv',
-             out_day='results/days.tsv'):
-    
+# Function to save both clean TSV and colorized TSV
+
+def save_both_versions(df, columns, base_filename):
+    # Ensure target folder exists
+    os.makedirs(os.path.dirname(base_filename), exist_ok=True)
+
+    # Save colorized TSV
+    df_colored = df[[c for c in columns if c in df.columns]]
+    df_colored.to_csv(base_filename + '_colored.tsv', sep='\t', index=False)
+
+    # Save clean TSV without ANSI
+    ansi_escape = re.compile(r'\033\[\d+m')
+    df_clean = df.copy()
+    for col in df_clean.columns:
+        if df_clean[col].dtype == object:
+            df_clean[col] = df_clean[col].apply(lambda x: ansi_escape.sub('', x) if isinstance(x, str) else x)
+    df_clean = df_clean[[c for c in columns if c in df_clean.columns]]
+    df_clean.to_csv(base_filename + '.tsv', sep='\t', index=False)
+
+def export(in_tsv,
+            out_puffs='results/puffs',
+            out_inh='results/inhalers',
+            out_treat='results/treatments',
+            out_day='results/days'):
+
     # Process puffs
     puffs = process_file(in_tsv)
     puffs_sorted = sorted(puffs, key=lambda x: x['order'])
 
     # Export puffs
     df_puffs = pd.DataFrame(puffs_sorted)
-
-    # Reorder and filter columns
-    df_puffs = df_puffs[[c for c in puff_columns if c in df_puffs.columns]]
-    df_puffs.to_csv(out_puffs, sep='\t', index=False)
+    save_both_versions(df_puffs, puff_columns, out_puffs)
 
     # Group inhalers and export
     inh = group_inhalers(puffs_sorted)
     df_inh = pd.DataFrame(inh)
-    df_inh = df_inh[[c for c in inh_columns if c in df_inh.columns]]
-    df_inh.to_csv(out_inh, sep='\t', index=False)
+    save_both_versions(df_inh, inh_columns, out_inh)
 
     # Group treatments and export
     treat, days = group_treatments(inh)
     df_treat = pd.DataFrame(treat)
-    df_treat = df_treat[[c for c in treat_columns if c in df_treat.columns]]
-    df_treat.to_csv(out_treat, sep='\t', index=False)
+    save_both_versions(df_treat, treat_columns, out_treat)
 
-    # Export daily summary (with no formatting headings)
+    # Export daily summary
     df_day = pd.DataFrame(days)
-    df_day = df_day[[c for c in day_columns if c in df_day.columns]]
-    df_day.to_csv(out_day, sep='\t', index=False)
+    save_both_versions(df_day, day_columns, out_day)
 
-    print(f"✅ Exported: {out_puffs}, {out_inh}, {out_treat}, {out_day}")
+    print(f"✅ Exported: {out_puffs}.tsv, {out_inh}.tsv, {out_treat}.tsv, {out_day}.tsv")
+    print(f"✅ Exported: {out_puffs}_colored.tsv, {out_inh}_colored.tsv, "
+          f"{out_treat}_colored.tsv, {out_day}_colored.tsv 🌈")
 
 # --- 7. Input -------------------------------
 
 if __name__ == "__main__":
-    exportar(tsv_path)
+    export(tsv_path)
