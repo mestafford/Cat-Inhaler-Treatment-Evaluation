@@ -1,0 +1,15 @@
+# Ignore local environment
+env_reina/
+
+# Old attempts and data
+temp/
+
+# New attempts at improving the code that haven't been completed
+code/test/
+
+# Avoid uploading files that are not simple text.
+# This will be applied throughout all the directories.
+*.xlsx
+
+# MacOS system file
+.DS_Store

@@ -1,0 +1,19 @@
+pandas # For data manipulation and analysis
+openpyxl # For reading Excel files
+
+# For use with venv (or virtualenv) if desired.
+# To create a virtual environment and install the required packages, you can use the following commands:
+
+# With venv:
+# python3 -m venv name_of_environment
+# source name_of_environment/bin/activate
+# pip install -r requirements.txt
+# python3 script.py
+# deactivate
+
+# With virtualenv:
+# virtualenv name_of_environment
+# source name_of_environment/bin/activate
+# pip install -r requirements.txt
+# python3 script.py
+# deactivate
