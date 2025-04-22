@@ -22,12 +22,13 @@ The script reads an Excel document where the user records data day by day. The f
 
 You can add additional columns (e.g., notes) that the script will ignore. Sequences of breaths should be written like this: `1 - 3 - 4 - 2`, where each number represents the number of breaths taken consecutively before the cat removed its face from the inhaler.
 
-> The script expects to read data from an Excel sheet named **"Puffs"**. If your Excel file uses a different sheet name (like the default `Sheet1`), you can change the value of the `sheet_name` parameter in the script:
->
->```python
-># Change this if your sheet has a different name
->df = pd.read_excel(excel_path, sheet_name="Puffs")
->```
+⚠️ Note:
+The script expects to read data from an Excel sheet named **"Puffs"**. If your Excel file uses a different sheet name (like the default `Sheet1`), you can change the value of the `sheet_name` parameter in the script:
+
+```python
+# Change this if your sheet has a different name
+df = pd.read_excel(excel_path, sheet_name="Puffs")
+```
 
 ## Evaluation Criteria
 
@@ -81,7 +82,7 @@ Clear and consistent recording is essential for reliable results. Decide on your
 
 Here’s a breakdown of the main files and folders in the repository:
 
-treatment_evaluation/
+```treatment_evaluation/
 ├── code/
 │   ├── evaluate_treatments.py     # Main script
 │   └── format_with_spacing.sh     # Optional helper script for readability
@@ -99,6 +100,7 @@ treatment_evaluation/
 ├── LICENSE.md
 ├── package_requirements.txt
 ├── .gitignore
+```
 
 ## Usage
 
