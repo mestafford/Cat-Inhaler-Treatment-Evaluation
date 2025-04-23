@@ -285,13 +285,13 @@ day_columns = [
     'day', 'avg_score_day', 'colors_day'
 ]
 
-# Function to save both clean TSV and colorized TSV
+# Function to save both clean TSV and colored TSV
 
 def save_both_versions(df, columns, base_filename):
     # Ensure target folder exists
     os.makedirs(os.path.dirname(base_filename), exist_ok=True)
 
-    # Save colorized TSV
+    # Save colored TSV
     df_colored = df[[c for c in columns if c in df.columns]]
     df_colored.to_csv(base_filename + '_colored.tsv', sep='\t', index=False)
 
