@@ -111,6 +111,10 @@ print(f"✅ Added blocks column to TSV: {tsv_path2}\n")
 
 # --- 4. Scoring functions ---------------------
 
+"""Thresholds were defined using the 25th, 50th, and 75th percentiles of the puff data.
+These values include data through 2025-04-23, except those marked not-representative.
+"""
+
 def score_continuity(num_blocks, combine_puffs=False):
     if combine_puffs == True:
         if num_blocks <= 7:
@@ -131,21 +135,21 @@ def score_continuity(num_blocks, combine_puffs=False):
 
 def score_time(seconds, combine_puffs=False):
     if combine_puffs:
-        if seconds <= 56: # Time for two puffs, within 68 seconds, perfect score.
+        if seconds <= 56: # Time for two puffs, within 56 seconds, perfect score.
             return 3
-        if seconds <= 62: # Time for two puffs, within 69 to 72 seconds, score 2.
+        if seconds <= 62: # Time for two puffs, within 56 to 62 seconds, score 2.
             return 2
-        if seconds <= 70: # Time for two puffs, within 73 to 80 seconds, score 1.
+        if seconds <= 70: # Time for two puffs, within 62 to 70 seconds, score 1.
             return 1
-        return 0          # If more than 80 seconds, score 0.
+        return 0          # If more than 70 seconds, score 0.
     else:
-        if seconds <= 28: # Time for one puff, within 34 seconds, perfect score.
+        if seconds <= 28: # Time for one puff, within 28 seconds, perfect score.
             return 3
-        if seconds <= 31: # Time for one puff, within 35 or 36 seconds, score 2.
+        if seconds <= 31: # Time for one puff, within 28 to 31 seconds, score 2.
             return 2
-        if seconds <= 35: # Time for one puff, within 37 to 40 seconds, score 1.
+        if seconds <= 35: # Time for one puff, within 32 to 35 seconds, score 1.
             return 1
-        return 0          # If more than 40 seconds, score 0.
+        return 0          # If more than 35 seconds, score 0.
 
 # Optional behavior score (not used in the current version)
 # Other necessary code to evaluate behavior is commented out.
