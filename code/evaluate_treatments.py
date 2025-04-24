@@ -14,7 +14,7 @@ tsv_path2  = "data/processed/puff_data_blocks.tsv"
 # All necessary columns in Excel for analysis
 expected_columns = [
     "day", "treatment", "inhaler", "puff", 
-    "seconds","combine_puffs", 
+    "seconds", "double_puff", 
     "not_representative", "sequence"
     # , "behavior"
 ]
@@ -22,7 +22,7 @@ expected_columns = [
 # Columns to export from Excel to TSV
 columns_to_export = [
     "day", "treatment", "inhaler", "puff", 
-    "seconds","combine_puffs", 
+    "seconds", "double_puff", 
     "not_representative", "sequence"
     # , "behavior"
 ]
@@ -102,7 +102,7 @@ df2[['breath_count', 'block_count']] = df['sequence'].apply(
 columns_to_export2 = [
     "day", "treatment", "inhaler", "puff",
     "seconds", "breath_count", 
-    "combine_puffs", "not_representative", 
+    "double_puff", "not_representative", 
     "block_count", "sequence" # , "behavior"
 ]
 
@@ -115,8 +115,8 @@ print(f"✅ Added blocks column to TSV: {tsv_path2}\n")
 This includes data through 2025-04-23, excluding double puff data and data marked not-representative and double puff data.
 """
 
-def score_continuity(num_blocks, combine_puffs=False):
-    if combine_puffs == True:
+def score_continuity(num_blocks, double_puff=False):
+    if double_puff == True:
         if num_blocks <= 7: # Used value of 7 because the 25th percentile is 3.5
             return 3
         if num_blocks <= 8:
@@ -133,8 +133,8 @@ def score_continuity(num_blocks, combine_puffs=False):
             return 1
         return 0            # If more than six blocks, score 0.
 
-def score_time(seconds, combine_puffs=False):
-    if combine_puffs:
+def score_time(seconds, double_puff=False):
+    if double_puff:
         if seconds <= 56: # Time for two puffs, within 56 seconds, perfect score.
             return 3
         if seconds <= 62: # Time for two puffs, within 56 to 62 seconds, score 2.
@@ -164,12 +164,12 @@ This includes data through 2025-04-23, excluding double puff data and data marke
 green_threshold = 4
 yellow_threshold = 2
 
-def score_puff(sequence, seconds, combine_puffs=False #, not_representative=False
+def score_puff(sequence, seconds, double_puff=False #, not_representative=False
                ): 
     total, num_blocks = parse_breaths(sequence)
     #num_blocks = len(valid_breaths)
     c = score_continuity(num_blocks)
-    t = score_time(seconds, combine_puffs)
+    t = score_time(seconds, double_puff)
     s = c + t
     col = (
         "\033[92mgreen\033[0m" if s >= green_threshold else
@@ -197,7 +197,7 @@ def process_file(path):
         lines = [l for l in f if l.strip() and not l.lstrip().startswith('#')]
         reader = csv.DictReader(lines, delimiter='\t')
         for idx, row in enumerate(reader):
-            combine = is_true(row.get('combine_puffs'))
+            double_puff = is_true(row.get('double_puff'))
             not_representative = is_true(row.get('not_representative', False))  # Get 'not_representative' value
             
             try:
@@ -211,7 +211,7 @@ def process_file(path):
             puff_data = score_puff(
                 row['sequence'],
                 seconds,
-                combine_puffs=combine
+                double_puff=double_puff
                 #not_representative=not_representative
             )
 
@@ -222,7 +222,7 @@ def process_file(path):
                 'treatment': int(row['treatment']),
                 'inhaler': row['inhaler'],
                 'puff': int(row['puff']),
-                'combine_puffs': combine,
+                'double_puff': double_puff,
                 'not_representative': not_representative  # Add 'not_representative' here too
             })
             puffs.append(puff_data)
@@ -252,7 +252,7 @@ def group_inhalers(puffs):
             'inhaler': inhal,
             'avg_score_inh': avg_score,
             'colors_inhaler': col,
-            'combine_puffs': any(x['combine_puffs'] for x in items_sorted)
+            'double_puff': any(x['double_puff'] for x in items_sorted)
         }
         for i, puff in enumerate(items_sorted, start=1):
             base[f'puff{i}_score'] = puff['score']
@@ -296,7 +296,7 @@ def group_treatments(inhalers):
             'treatment': treat,
             'inhalers_registrados': len(items),
             'avg_score_treat': round(avg_score_treat, 2),
-            'combine_puffs_in_treatment': any(p.get('combine_puffs') for p in items),
+            'double_puff_in_treatment': any(p.get('double_puff') for p in items),
             'colors_treatment': col_treat,
         })
 
@@ -330,19 +330,19 @@ puff_columns = [
     'seconds', 'block_count' #, 'behavior', 
     'time_score', 'continuity_score', 
     #'behavior_score',
-    'score', 'combine_puffs', 
+    'score', 'double_puff', 
     'not_representative', 'sequence'
 ]
 
 inh_columns = [
     'day', 'treatment', 'inhaler', 'avg_score_inh',
-    'colors_inhaler', 'combine_puffs'
+    'colors_inhaler', 'double_puff'
 ]
 
 treat_columns = [
     'day', 'treatment', 'inhalers_registrados',
     'avg_score_treat', 'colors_treatment', 
-    'combine_puffs_in_treatment'
+    'double_puff_in_treatment'
 ]
 
 day_columns = [
