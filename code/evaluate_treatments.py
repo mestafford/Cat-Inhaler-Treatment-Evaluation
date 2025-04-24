@@ -127,9 +127,9 @@ def score_continuity(num_blocks, combine_puffs=False):
     else:
         if num_blocks <= 3: # Three blocks or less, perfect score.
             return 3
-        if num_blocks <= 4: # Four or five blocks, score 2.
+        if num_blocks <= 4: # Four blocks, score 2.
             return 2
-        if num_blocks <= 6: # Six blocks, score 1.
+        if num_blocks <= 6: # Five or six blocks, score 1.
             return 1
         return 0            # If more than six blocks, score 0.
 
