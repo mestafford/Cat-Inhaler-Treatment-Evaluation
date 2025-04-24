@@ -9,18 +9,22 @@ from collections import defaultdict
 
 excel_path = "data/raw/daily_puff_log.xlsx"
 tsv_path   = "data/processed/puff_data.tsv"
+tsv_path2  = "data/processed/puff_data_blocks.tsv"
 
 # All necessary columns in Excel for analysis
 expected_columns = [
-    "day", "treatment", "inhaler", "puff",
-    "sequence", "seconds", "combine_puffs"
+    "day", "treatment", "inhaler", "puff", 
+    "seconds","combine_puffs", 
+    "not_representative", "sequence"
     # , "behavior"
 ]
 
 # Columns to export from Excel to TSV
 columns_to_export = [
     "day", "treatment", "inhaler", "puff", 
-    "combine_puffs", "seconds", "sequence"
+    "seconds","combine_puffs", 
+    "not_representative", "sequence"
+    # , "behavior"
 ]
 
 # --- 1. Read Excel y check columns ---
@@ -50,55 +54,96 @@ if missing_export:
 # --- 2. Save only the selected columns to TSV ---
 
 df[columns_to_export].to_csv(tsv_path, sep="\t", index=False)
-print(f"✅ Excel converted to TSV with selected columns: {tsv_path}\n")
+print(f"✅ Excel converted to TSV with selected columns: {tsv_path}")
 
-# --- 2. Functions of parsing y scoring --------------------
+# --- 3. Function to simplify retreiving Boolean values ---
 
-def parse_breaths(sequence):
-    blocks = re.split(r'\s*-\s*', sequence)
+def is_true(value):
+    return str(value).strip().lower() in ('1', 'true', 'yes')
+
+# --- 3. Functions of parsing y scoring --------------------
+
+# Count the number of block (breaths taken sequencially) in a sequence of breaths
+
+def parse_breaths(sequence_str):
+    """
+    Parses a sequence string like '1 - 2 - 0.5 - 3/4' and returns:
+    - total: total breaths (sum of valid full breaths, dropping partials/zeros)
+    - valid_breaths: list of valid breath counts (integers > 0)
+    """
+    blocks = re.split(r'\s*-\s*', sequence_str)
+    valid_breaths = []
     total = 0
-    continuity = []
-    for b in blocks:
-        comment = '(' in b and ')' in b
-        num_str = re.sub(r'\(.*?\)', '', b).split('/')[0].strip().replace(',', '.')
-        try:
-            n = int(float(num_str))  # Removes decimal from 2,5 or 2.0
-        except:
-                n = 0
-        total += n
-        
-        # For continuity: only blocks without comments and with at least 2 breaths
-        if not comment and n >= 2:
-            continuity.append(n)
-    return total, continuity
 
-def score_continuity(groups, total):
-    if total == 0:
+    for b in blocks:
+        # Fix breaths recorded as partial or uncertain
+        num_str = b.split('/')[0].strip().replace(',', '.')
+        try:
+            n = int(float(num_str))
+        except:
+            n = 0
+        # Only include full breaths
+        if n > 0:
+            valid_breaths.append(n)
+            total += n
+
+    return total, len(valid_breaths)
+
+# Add this information to the TSV file
+
+# Load the TSV file
+df2 = pd.read_csv(tsv_path, sep="\t")
+
+df2[['breath_count', 'block_count']] = df['sequence'].apply(
+    lambda x: pd.Series(parse_breaths(x))
+)
+
+# Save the updated file
+columns_to_export2 = [
+    "day", "treatment", "inhaler", "puff",
+    "seconds", "breath_count", 
+    "combine_puffs", "not_representative", 
+    "block_count", "sequence" # , "behavior"
+]
+
+df2[columns_to_export2].to_csv(tsv_path2, sep="\t", index=False)
+print(f"✅ Added blocks column to TSV: {tsv_path2}\n")
+
+# --- 4. Scoring functions ---------------------
+
+def score_continuity(num_blocks, combine_puffs=False):
+    if combine_puffs == True:
+        if num_blocks <= 7:
+            return 3
+        if num_blocks <= 10:
+            return 2
+        if num_blocks <= 12:
+            return 1
         return 0
-    ratio = sum(groups) / total
-    if ratio >= 0.8: # If 80% of the breaths are in groups of 2 or more, perfect score.
-        return 3
-    if ratio >= 0.6: # If 60% of the breaths are in groups of 2 or more, score 2.
-        return 2
-    if ratio >= 0.4: # If 40% of the breaths are in groups of 2 or more, score 1.
-        return 1
-    return 0
+    else:
+        if num_blocks <= 3.5:
+            return 3
+        if num_blocks <= 5:
+            return 2
+        if num_blocks <= 6:
+            return 1
+        return 0
 
 def score_time(seconds, combine_puffs=False):
     if combine_puffs:
-        if seconds <= 68: # Time for two puffs, within 68 seconds, perfect score.
+        if seconds <= 56: # Time for two puffs, within 68 seconds, perfect score.
             return 3
-        if seconds <= 72: # Time for two puffs, within 69 to 72 seconds, score 2.
+        if seconds <= 62: # Time for two puffs, within 69 to 72 seconds, score 2.
             return 2
-        if seconds <= 80: # Time for two puffs, within 73 to 80 seconds, score 1.
+        if seconds <= 70: # Time for two puffs, within 73 to 80 seconds, score 1.
             return 1
         return 0          # If more than 80 seconds, score 0.
     else:
-        if seconds <= 34: # Time for one puff, within 34 seconds, perfect score.
+        if seconds <= 28: # Time for one puff, within 34 seconds, perfect score.
             return 3
-        if seconds <= 36: # Time for one puff, within 35 or 36 seconds, score 2.
+        if seconds <= 31: # Time for one puff, within 35 or 36 seconds, score 2.
             return 2
-        if seconds <= 40: # Time for one puff, within 37 to 40 seconds, score 1.
+        if seconds <= 35: # Time for one puff, within 37 to 40 seconds, score 1.
             return 1
         return 0          # If more than 40 seconds, score 0.
 
@@ -109,15 +154,15 @@ def score_time(seconds, combine_puffs=False):
     return max(0, min(2, int(v)))
 
 # Scoring parameters for traffic light colors
-green_threshold = 5
-yellow_threshold = 3
+green_threshold = 4
+yellow_threshold = 2
 
-def score_puff(sequence, seconds, combine_puffs=False): 
-    total, groups = parse_breaths(sequence)
-    c = score_continuity(groups, total)
+def score_puff(sequence, seconds, combine_puffs=False #, not_representative=False
+               ): 
+    total, num_blocks = parse_breaths(sequence)
+    #num_blocks = len(valid_breaths)
+    c = score_continuity(num_blocks)
     t = score_time(seconds, combine_puffs)
-    # b = score_behavior(behavior)
-    # s = c + t + b
     s = c + t
     col = (
         "\033[92mgreen\033[0m" if s >= green_threshold else
@@ -128,14 +173,15 @@ def score_puff(sequence, seconds, combine_puffs=False):
         'sequence': sequence,
         'seconds': seconds,
         #'behavior': b,
-        'total': total,
-        'continuity': c,
-        'time': t,
+        'breath_count': total,
+        'block_count': num_blocks,
+        'continuity_score': c,
+        'time_score': t,
         'score': s,
         'colors': col
     }
 
-# --- 3. Read TSV with puff data -------------------------
+# --- 5. Read TSV with puff data -------------------------
 
 def process_file(path):
     puffs = []
@@ -144,30 +190,38 @@ def process_file(path):
         lines = [l for l in f if l.strip() and not l.lstrip().startswith('#')]
         reader = csv.DictReader(lines, delimiter='\t')
         for idx, row in enumerate(reader):
-            combine = str(row.get('combine_puffs','')).lower() in ('1','true','yes')
+            combine = is_true(row.get('combine_puffs'))
+            not_representative = is_true(row.get('not_representative', False))  # Get 'not_representative' value
+            
             try:
-                seconds = int(row['seconds'])
+                seconds = int(row['seconds']) 
+                # Seconds must be an integer or change to float
             except (ValueError, TypeError):
                 print(f"⚠️  Invalid value for 'seconds' in row {idx+2}: {row['seconds']}. Assigning value 999.")
                 seconds = 999
+
+            # Pass the 'not_representative' value to the score_puff function
             puff_data = score_puff(
                 row['sequence'],
                 seconds,
-                #row['behavior'],
                 combine_puffs=combine
+                #not_representative=not_representative
             )
+
+            # Update the returned dictionary with other relevant information
             puff_data.update({
                 'order': idx,
                 'day': row['day'],
                 'treatment': int(row['treatment']),
                 'inhaler': row['inhaler'],
-                'puff_id': int(row['puff']),
-                'combine_puffs': combine
+                'puff': int(row['puff']),
+                'combine_puffs': combine,
+                'not_representative': not_representative  # Add 'not_representative' here too
             })
             puffs.append(puff_data)
     return puffs
 
-# --- 4. Group puffs into logical inhalers -----------
+# --- 6. Group puffs into logical inhalers -----------
 
 def group_inhalers(puffs):
     groups = defaultdict(list)
@@ -241,7 +295,7 @@ def group_treatments(inhalers):
 
         day_dict[day].extend(all_scores)
 
-# --- 6. Colors per day ---------------------
+# --- 7. Colors per day ---------------------
 
     daily_summary = []
     for day, scores in day_dict.items():
@@ -259,15 +313,18 @@ def group_treatments(inhalers):
 
     return summary, daily_summary
 
-# --- 7. Export results to TSV ---------------------
+# --- 8. Export results to TSV ---------------------
 
 # Choose columns to include and their order for the output of each tsv.
 
 puff_columns = [
-    'day', 'treatment', 'inhaler', 'puff_id',
-    'score', 'colors', 'breaths', 'seconds', 
-    'continuity', 'time', #'behavior', 
-    'combine_puffs', 'sequence'
+    'day', 'treatment', 'inhaler', 'puff',
+    'score', 'colors', 'breath_count', 
+    'seconds', 'block_count' #, 'behavior', 
+    'time_score', 'continuity_score', 
+    #'behavior_score',
+    'score', 'combine_puffs', 
+    'not_representative', 'sequence'
 ]
 
 inh_columns = [
@@ -336,7 +393,7 @@ def export(in_tsv,
     print(f"✅ Exported: {out_puffs}_colored.tsv, {out_inh}_colored.tsv, "
           f"{out_treat}_colored.tsv, {out_day}_colored.tsv 🌈")
 
-# --- 7. Input -------------------------------
+# --- 9. Input -------------------------------
 
 if __name__ == "__main__":
-    export(tsv_path)
+    export(tsv_path2)
