@@ -2,10 +2,10 @@
 
 This repository contains Python 3 code to evaluate the effectiveness of cat inhaler treatments using real-world data. It was developed collaboratively with the help of ChatGPT and adapted to the specific needs of my cat, but it's designed to be easily customized to suit your own use case.
 
-The code analyzes treatment data and provides insights into the efficiency of each inhaler treatment. It generates one TSV file with the information from the original Excel file, and four TSV files with evaluations at different levels: puff, inhaler, treatment, and day. These evaluations are presented in a traffic light format (green, yellow, or red) based on two main criteria:
+The code analyzes treatment data and provides insights into the efficiency of each inhaler treatment. It generates two TSV files containing processed data from the original Excel file, and four TSV files (each with a colored and uncolored version) with evaluations at different levels: puff, inhaler, treatment, and day. These evaluations are presented in a traffic light format (green, yellow, or red) based on two main criteria:
 
-1. **Continuity**: How many breaths the cat takes before removing its face from the inhaler.
-2. **Time**: How many seconds it takes from pressing the inhaler to reaching the prescribed number of breaths (10 breaths by default, but this can be adjusted).
+1. **Continuity**: How continuously the cat breathes without removing its face from the inhaler.
+2. **Time**: How many seconds it takes from pressing the inhaler to reaching the prescribed number of breaths.
 
 An optional third criterion, **Behavior**, can be included to evaluate how well the cat tolerates the inhaler. However, in my experience, this was less effective due to its subjectivity. If used, it will increase the overall score, so you may need to modify the scoring system.
 
@@ -13,12 +13,14 @@ An optional third criterion, **Behavior**, can be included to evaluate how well 
 
 The script reads an Excel document where the user records data day by day. The following columns are required:
 
-- `date`
+- `day`
 - `treatment`
 - `inhaler`
+- `puff`
 - `sequence`
 - `seconds`
 - `double_puff`
+- `not_representative`
 
 You can add additional columns (e.g., notes) that the script will ignore. Sequences of breaths should be written like this: `1 - 3 - 4 - 2`, where each number represents the number of breaths taken consecutively before the cat removed its face from the inhaler.
 
@@ -32,20 +34,21 @@ df = pd.read_excel(excel_path, sheet_name="Puffs")
 
 ## Evaluation Criteria
 
-The current scoring system is designed to balance leniency and strictness. Here's how the scores are assigned:
+Here's how the scores are assigned in the current version of the script:
 
 ### Continuity:
-- **3 points**: At least 8 out of 10 breaths taken in groups of 2 or more breaths.
-- **2 points**: 5 or 6 breaths taken in groups of 2 or more.
-- **1 point**: 3 or fewer breaths in groups of 2 or more.
+- **3 points**: No more than 3 blocks (groups of breaths) per puff.
+- **2 points**: 4 blocks per puff.
+- **1 point**: 5 or 6 blocks per puff.
+- **0 points**: More than 6 blocks per puff.
 
 ### Time:
-- **3 points**: 10 breaths completed in 34 seconds or less.
-- **2 points**: 35–36 seconds.
-- **1 point**: 37–40 seconds.
-- **0 points**: Over 40 seconds.
+- **3 points**: 10 breaths completed in 28 seconds or less.
+- **2 points**: 28 to 31 seconds.
+- **1 point**: 32 to 35 seconds.
+- **0 points**: Over 35 seconds.
 
-For cases where two puffs are needed to reach 10 breaths (indicated by the `double_puff` column), the times are doubled.
+For cases where two puffs are needed to reach 10 breaths (indicated by the `double_puff` column), the values are doubled.
 
 ### Optional Behavior Score:
 This score is manually added by the user based on the cat's reaction during the treatment:
@@ -55,14 +58,15 @@ This score is manually added by the user based on the cat's reaction during the 
 - **2 points**: Calm, allows inhaler placement.
 
 ### Final Scoring:
-Puffs with scores of 5 or 6 points are marked as **green**, 3 or 4 points as **yellow**, and 0, 1, or 2 points as **red**. The same scale is applied to inhalers, treatments, and days, averaging scores where applicable.
+Puffs with scores of 4 to 6 points are marked as **green**, 2 to 4 points as **yellow**, and 0 to 1 points as **red**. The same scale is applied to inhalers, treatments, and days, averaging scores where applicable.
 
-You can adjust the leniency by changing the thresholds for **green** and **yellow** scores, or by modifying the criteria for continuity, time, or breath groupings.
+You can adjust the leniency by changing the thresholds for **green** and **yellow** scores, or by modifying the criteria for continuity or time.
+
+My chosen cut-off values have been determined using my cat's data from the beginning of treatment through 2025-04-23, extracting the 25th, 50th and 75th percentiles for continuity and time data, and the 33rd and 66th for puff scores. I will be adding additional code shortly.
 
 ## Additional Features
 
-- **Handling of uncertainties**: If a breath count is uncertain (e.g., `2/3`), the script will consider the lower number. This prevents miscounted data from skewing results.
-- **Handling of movement**: Sequences marked with movement (e.g., `1 - 2 - 3 (with movement)`) will be excluded from analysis, as these data points are less reliable.
+- **Handling of uncertainties**: If a breath count is uncertain (e.g., `2/3` or `4.5`), the script will consider the lower number. This prevents miscounted data from skewing results.
 
 The script also includes a helper script, `add_spaces_between_days.sh`, which can be used to add visual spacing between results when viewing them in the terminal. 
 - **macOS users**: You may need to install `gawk` using Homebrew (`brew install gawk`).
@@ -70,7 +74,7 @@ The script also includes a helper script, `add_spaces_between_days.sh`, which ca
 
 ## Limitations
 
-- **Treatment regimen**: This script is designed for a cat receiving two daily treatments: one puff of Ventolin and two puffs of Flixotide. The code will still work for other regimens, as long as breaths can be counted.
+- **Treatment regimen**: This script is designed for a cat receiving two daily treatments that include one puff of Ventolin and two puffs of Flixotide. The medication is administered through an Aerokat chamber, which guarantees it is available during 30 seconds. The code will still work for other regimens, as long as breaths can be counted.
 - **Three-puff treatments**: This script doesn’t support cases where three puffs are required to reach the prescribed number of breaths.
 - **Exceeding prescribed breaths**: If your cat exceeds the prescribed breaths (i.e., over 10), the extra breaths may decrease the scores for time and continuity. In such cases, it's best to adjust the time and groupings manually.
 
