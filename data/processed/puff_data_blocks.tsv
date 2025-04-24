@@ -1,0 +1,229 @@
+day	treatment	inhaler	puff	seconds	breath_count	combine_puffs	not_representative	block_count	sequence
+2025-03-10	1	Flixotide	1	41	10	False	False	6	1 - 2 - 2 - 2 - 2 - 1
+2025-03-10	1	Flixotide	2	28	10	False	False	4	1 - 3 - 2 - 4
+2025-03-10	2	Flixotide	1	27	10	False	False	5	1 - 1,5 - 2 - 5 - 1
+2025-03-10	2	Flixotide	2	37	10	False	False	5	1 - 2 - 2 - 0,5 - 1 - 4
+2025-03-11	1	Ventolin	1	47	10	True	False	9	1 - 1 - 1 - 1 - 1 - 1 - 1 - 2 - 1
+2025-03-11	1	Flixotide	1	30	10	False	False	6	1 - 2 - 1 - 1 - 3 - 2
+2025-03-11	1	Flixotide	2	22	10	False	False	3	1 - 6 - 3
+2025-03-11	2	Ventolin	1	48	10	True	False	9	1 - 1 - 1 - 1 - 1 - 1 - 1 - 2 - 1
+2025-03-11	2	Flixotide	1	30	10	False	False	6	1 - 1 - 2 - 3 - 2 - 1
+2025-03-11	2	Flixotide	2	30	10	False	False	5	1 - 4 - 2 - 2 - 1
+2025-03-12	1	Ventolin	1	29	10	False	False	8	1 - 1 - 1 - 1 - 2 - 1 - 2 - 1
+2025-03-12	1	Flixotide	1	30	10	False	False	4	2 - 1 - 5 - 2
+2025-03-12	1	Flixotide	2	37	10	False	False	6	1 - 1 - 2 - 4 - 1 - 1
+2025-03-12	2	Ventolin	1	35	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-12	2	Flixotide	1	34	10	False	False	5	1 - 3 - 4 - 1 - 1 
+2025-03-12	2	Flixotide	2	23	10	False	False	3	1 - 4 - 5
+2025-03-13	1	Ventolin	1	42	10	True	False	7	1 - 1 - 2 - 2 - 2 - 1 - 1
+2025-03-13	1	Flixotide	1	29	10	False	False	4	3 - 3 - 3 - 1
+2025-03-13	1	Flixotide	2	30	10	False	False	4	3 - 2 - 3 - 2
+2025-03-13	2	Ventolin	1	46	10	True	False	8	1 - 1 - 1 - 1 - 1 - 1 - 1 - 3
+2025-03-13	2	Flixotide	1	35	10	False	False	6	4 - 1 - 2 - 1 - 1 - 1
+2025-03-13	2	Flixotide	2	37	10	False	False	7	1 - 3 - 1 - 1 - 1 - 1 - 2
+2025-03-14	1	Ventolin	1	47	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-14	1	Flixotide	1	29	10	False	False	6	1 - 2 - 4 - 1 - 1 - 1
+2025-03-14	1	Flixotide	2	34	10	False	False	8	1 - 1 - 1 - 1 - 2 - 2 - 1 - 1
+2025-03-14	2	Ventolin	1	59	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 
+2025-03-14	2	Flixotide	1	40	10	False	False	7	1 - 3 - 1 - 1 - 2 - 1 - 1 
+2025-03-14	2	Flixotide	2	38	10	False	False	7	2 - 1 - 1 - 2 - 1 - 1 - 2
+2025-03-15	1	Ventolin	1	92	10	True	False	8	1 - 2 - 1 - 1 - 1 - 2 - 1 - 1
+2025-03-15	1	Flixotide	1	70	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-15	1	Flixotide	2	34	10	False	False	8	1 - 1 - 2 - 1 - 1 - 1 - 2 - 1
+2025-03-15	2	Ventolin	1	54	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-15	2	Flixotide	1	34	10	False	False	4	2 - 3 - 3 - 2
+2025-03-15	2	Flixotide	2	47	9	False	False	5	1 - 2 - 3 - 1 - 2
+2025-03-16	1	Ventolin	1	102	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-16	1	Flixotide	1	42	10	False	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-16	1	Flixotide	2	41	10	False	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-16	2	Ventolin	1	31	10	False	False	9	1 - 2 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-16	2	Flixotide	1	28	10	False	False	9	1 - 1 - 1 - 1 - 1 - 2 - 1 - 1 - 1
+2025-03-16	2	Flixotide	2	29	10	False	False	9	2 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-17	1	Ventolin	1	59	10	False	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-17	1	Flixotide	1	36	10	False	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 
+2025-03-17	1	Flixotide	2	35	10	False	False	8	1 - 1 - 1 - 2 - 1 - 1 - 2 - 1
+2025-03-17	2	Ventolin	1	50	10	True	False	9	2 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 
+2025-03-17	2	Flixotide	1	38	10	False	False	4	4 - 3 - 2 - 1
+2025-03-17	2	Flixotide	2	37	10	False	False	5	1 - 3 - 4 - 1 - 1
+2025-03-18	1	Flixotide	1	35	9	False	False	9	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-18	1	Flixotide	2	39	10	False	False	7	1 - 1 - 2 - 1 - 2 - 1 - 2 
+2025-03-18	2	Flixotide	1	33	10	False	False	5	4 - 1 - 2 - 2 - 1
+2025-03-18	2	Flixotide	2	41	10	False	False	8	1 - 3 - 1 - 1 - 1 - 1 - 1 - 1 
+2025-03-18	3	Ventolin	1	56	10	True	False	9	1 - 1 - 1 - 1 - 1 - 1 - 1 - 2 - 1 
+2025-03-19	1	Flixotide	1	32	9	False	False	6	1 - 1 - 1 - 4 - 1 - 1
+2025-03-19	1	Flixotide	2	35	10	False	False	8	2 - 1 - 1 - 1 - 1 - 1 - 1 - 2
+2025-03-19	2	Flixotide	1	40	10	False	False	3	3 - 3 - 4
+2025-03-19	2	Flixotide	2	32	10	False	False	4	1 - 6/7 - 2 - 1
+2025-03-20	1	Flixotide	1	33	7	False	False	5	2 - 1 - 2 - 1 - 1
+2025-03-20	1	Flixotide	2	35	9	False	False	8	1 - 2 - 1 - 1 - 0,5 - 1 - 1 - 1 - 1
+2025-03-20	2	Flixotide	1	35	10	False	False	8	3 - 1 - 1 - 1 - 1 - 1,5 - 1 - 1
+2025-03-20	2	Flixotide	2	27	10	False	False	7	1 - 2 - 2 - 1 - 1 - 2 - 1 
+2025-03-21	1	Flixotide	1	37	8	False	False	5	1 - 1 - 4,5 - 1 - 1
+2025-03-21	1	Flixotide	2	33	10	False	False	3	6 - 1 - 3
+2025-03-21	2	Ventolin	1	35	9	True	False	5	0,5 - 0,5 - 3 - 2 - 1 - 2 - 1 - 0,5 - 0,5
+2025-03-21	2	Flixotide	1	44	9	False	False	4	0,5 - 0,5 - 3 - 0,5 - 3 - 1 - 2
+2025-03-21	2	Flixotide	2	31	10	False	False	2	5 - 5 
+2025-03-22	1	Ventolin	1	46	10	True	False	7	1 - 1 - 2 - 1 - 2 - 2 - 1
+2025-03-22	1	Flixotide	1	33	10	False	False	5	2 - 1 - 3 - 3 - 1
+2025-03-22	1	Flixotide	2	23	10	False	False	3	5 - 2 - 3
+2025-03-22	2	Ventolin	1	20	13	False	True	11	1 - 2 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 2
+2025-03-22	2	Flixotide	1	40	10	False	False	6	1 - 2 - 1 - 2 - 2 - 2
+2025-03-22	2	Flixotide	2	45	10	False	False	7	0,5 - 3 - 2 - 1 - 1 - 1 - 1 - 1
+2025-03-23	1	Ventolin	1	48	10	True	False	10	1,5 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-03-23	1	Flixotide	1	33	10	False	False	3	2 - 6 - 2
+2025-03-23	1	Flixotide	2	28	10	False	False	4	4 - 3 - 2 - 1
+2025-03-23	2	Ventolin	1	64	10	True	False	9	1 - 1 - 1 - 1 - 1 - 1  - 2 - 1 - 1
+2025-03-23	2	Flixotide	1	28	10	False	False	4	4,5 - 3 - 2 - 1 
+2025-03-23	2	Flixotide	2	35	10	False	False	6	3 - 2 - 1 - 1 - 2 - 1
+2025-03-24	1	Ventolin	1	27	8	False	False	5	1 - 4 - 1 - 1 - 1/2
+2025-03-24	1	Flixotide	1	27	10	False	False	4	6 - 2 - 1 - 1
+2025-03-24	1	Flixotide	2	29	10	False	False	6	4 - 1 - 2,5 - 1 - 1 - 1
+2025-03-24	2	Ventolin	1	29	10	False	False	4	1 - 5 - 3 - 1
+2025-03-24	2	Flixotide	1	30	10	False	False	3	0,5 - 7 - 2 - 1
+2025-03-24	2	Flixotide	2	29	10	False	False	3	4 - 5 - 1
+2025-03-25	1	Ventolin	1	34	10	False	False	6	1 - 1 - 4 - 2 - 1 - 1
+2025-03-25	1	Flixotide	1	30	10	False	False	4	1 - 4 - 2 - 3
+2025-03-25	1	Flixotide	2	27	10	False	False	4	3 - 3 - 3 - 1
+2025-03-25	2	Ventolin	1	42	10	True	False	4	3 - 3 - 1 - 3
+2025-03-25	2	Flixotide	1	38	10	False	False	4	3 - 2 - 1/2 - 4
+2025-03-25	2	Flixotide	2	30	10	False	False	4	5 - 2 - 2 - 1
+2025-03-26	1	Ventolin	1	58	10	True	False	6	0,5 - 2 - 1 - 1 - 2 - 2 - 2
+2025-03-26	1	Flixotide	1	33	10	False	False	4	3 - 4 - 2 - 1
+2025-03-26	1	Flixotide	2	34	9	False	False	3	6/7 - 1 - 2
+2025-03-26	2	Ventolin	1	65	10	True	False	7	2 - 2 - 1 - 1 - 1 - 1 - 0,5 - 2
+2025-03-26	2	Flixotide	1	35	10	False	False	3	3/4 - 3 - 4
+2025-03-26	2	Flixotide	2	32	10	False	False	4	3 - 1 - 5 - 1
+2025-03-27	1	Ventolin	1	51	10	True	False	9	1 - 1 - 1 - 1 - 1 - 2 - 1 - 1 - 1
+2025-03-27	1	Flixotide	1	30	10	False	False	4	2 - 4/5 - 3 - 1
+2025-03-27	1	Flixotide	2	34	10	False	False	6	2 - 2 - 1 - 1 - 3 - 1
+2025-03-27	2	Ventolin	1	24	10	False	False	5	4 - 1 - 1 - 2 - 2
+2025-03-27	2	Flixotide	1	33	10	False	False	5	2 - 3 - 2 - 2 - 1 
+2025-03-27	2	Flixotide	2	39	10	False	False	5	3 - 1 - 3,5 - 2 - 1
+2025-03-28	1	Ventolin	1	61	10	True	True	7	1 - 2 - 1 - 1 - 1 - 3 - 1 
+2025-03-28	1	Flixotide	1	33	9	False	False	5	3 - 2 - 2 - 1/2 - 1
+2025-03-28	1	Flixotide	2	49	10	False	False	5	3 - 4 - 1 - 1 - 1
+2025-03-28	2	Ventolin	1	62	10	True	False	8	1 - 1/2 - 3 - 1 - 1 - 1 - 1 - 1 
+2025-03-28	2	Flixotide	1	43	10	False	False	5	0,5 - 3 - 2 - 2/3 - 2 - 1
+2025-03-28	2	Flixotide	2	32	10	False	False	4	2 - 2 - 0,5 - 1 - 5
+2025-03-29	1	Ventolin	1	45	10	True	False	10	1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 
+2025-03-29	1	Flixotide	1	33	9	False	False	6	2/3 - 2 - 1 - 1 - 2 - 1
+2025-03-29	1	Flixotide	2	37	10	False	False	7	1 - 1 - 2 - 2 - 2 - 1 - 1
+2025-03-29	2	Ventolin	1	24	10	False	False	4	5 - 3 - 1 - 1
+2025-03-29	2	Flixotide	1	26	10	False	False	2	6 - 4
+2025-03-29	2	Flixotide	2	26	10	False	False	3	7 - 2 - 1
+2025-03-30	1	Ventolin	1	57	10	True	False	8	1 - 1 - 1 - 2 - 1 - 2 - 1 - 1
+2025-03-30	1	Flixotide	1	42	10	False	False	7	1 - 2 - 1 - 1 - 2/3 - 2/3 - 1
+2025-03-30	1	Flixotide	2	37	10	False	False	5	3 - 2 - 2 - 2 - 1
+2025-03-30	2	Ventolin	1	59	12	True	False	7	0,5 - 3 - 0,5 - 2 - 2 - 2 - 1 - 1 - 1
+2025-03-30	2	Flixotide	1	35	10	False	False	3	5 - 2 - 3
+2025-03-30	2	Flixotide	2	33	10	False	False	3	1 - 8 - 1
+2025-03-31	1	Ventolin	1	55	10	True	False	8	1 - 1 - 1 - 1 - 1 - 2 - 2 - 1
+2025-03-31	1	Flixotide	1	34	10	False	False	6	3 - 1 - 2 - 2 - 1 - 1
+2025-03-31	1	Flixotide	2	29	10	False	False	4	3,5 - 4 - 2 - 1
+2025-03-31	2	Ventolin	1	28	10	False	False	6	3 - 1 - 2 - 2 - 1 - 1 
+2025-03-31	2	Flixotide	1	37	10	False	False	4	5 - 3 - 1/2 - 1
+2025-03-31	2	Flixotide	2	33	10	False	False	3	4 - 2 - 4
+2025-04-01	1	Ventolin	1	26	10	False	False	5	1 - 3 - 2 - 1 - 3
+2025-04-01	1	Flixotide	1	42	10	False	False	7	1 - 2 - 2 - 2 - 1 - 1 - 1
+2025-04-01	1	Flixotide	2	30	10	False	False	4	3 - 3 - 3 - 1
+2025-04-01	2	Ventolin	1	33	10	False	False	4	7 - 1/2 - 1 - 1
+2025-04-01	2	Flixotide	1	25	10	False	True	3	7 - 2/3 - 1
+2025-04-01	2	Flixotide	2	60	10	True	True	5	2 - 1 - 3/4 - 3/4 - 1
+2025-04-02	1	Ventolin	1	36	10	False	False	7	2 - 1 - 1 - 2 - 2 - 1 - 1
+2025-04-02	1	Flixotide	1	28	10	False	False	4	2 - 3 - 2 - 3
+2025-04-02	1	Flixotide	2	31	10	False	False	6	1 - 3 - 3 - 1/2 - 1 - 1
+2025-04-02	2	Ventolin	1	32	10	False	False	9	1 - 1 - 1 - 1 - 1 - 1 - 2 - 1 - 1
+2025-04-02	2	Flixotide	1	27	10	False	False	3	7 - 2 - 1
+2025-04-02	2	Flixotide	2	31	10	False	False	7	3 - 2 - 1 - 1 - 1 - 1 - 1
+2025-04-03	1	Ventolin	1	32	10	False	False	6	3 - 2 - 2 - 1 - 1 - 1
+2025-04-03	1	Flixotide	1	36	10	False	False	6	1 - 3 - 2 - 1 - 1 - 2
+2025-04-03	1	Flixotide	2	51	9	False	False	8	1/2 - 2 - 1  - 1 - 1 - 1 - 1 - 1
+2025-04-03	2	Ventolin	1	33	10	False	False	5	4,5 - 2 - 1 - 2 - 1
+2025-04-03	2	Flixotide	1	35	10	False	False	5	2,5 - 4,5 - 1 - 2 - 1
+2025-04-03	2	Flixotide	2	39	10	False	False	3	6,5 - 3 - 1
+2025-04-04	1	Ventolin	1	56	10	True	False	8	2,5 - 1 - 1 - 1 - 1 - 2 - 1 - 1,5
+2025-04-04	1	Flixotide	1	23	10	False	False	2	9 - 1
+2025-04-04	1	Flixotide	2	36	9	False	False	5	1,5 - 3,5 - 3 - 1,5 - 1
+2025-04-04	2	Ventolin	1	30	8	False	False	5	1 - 3 - 1 - 2 - 1
+2025-04-04	2	Flixotide	1	28	10	False	False	2	6 - 4
+2025-04-04	2	Flixotide	2	30	10	False	False	3	7 - 2 - 1
+2025-04-05	1	Ventolin	1	30	10	False	False	5	3 - 2 - 1 - 1 - 3
+2025-04-05	1	Flixotide	1	41	10	False	False	4	0,5 - 2,5 - 4 - 2 - 2
+2025-04-05	1	Flixotide	2	37	10	False	False	4	4 - 2,5 - 1 - 3,5 
+2025-04-05	2	Ventolin	1	37	10	False	False	5	4 - 2 - 1 - 1 - 2
+2025-04-05	2	Flixotide	1	27	10	False	False	2	5 - 5,5
+2025-04-05	2	Flixotide	2	44	10	False	False	5	2,5 - 1 - 3 - 0,5 - 3 - 1
+2025-04-06	1	Ventolin	1	33	10	False	False	7	2 - 1 - 3 - 1 - 1 - 1 - 1
+2025-04-06	1	Flixotide	1	32	10	False	False	4	3 - 3 - 3 - 1
+2025-04-06	1	Flixotide	2	30	10	False	False	4	3 - 4 - 2 - 1
+2025-04-06	2	Ventolin	1	34	10	False	False	4	5 - 1 - 2 - 2
+2025-04-06	2	Flixotide	1	27	10	False	False	2	8,5 - 2
+2025-04-06	2	Flixotide	2	30	10	False	False	3	4 - 5 - 1
+2025-04-07	1	Ventolin	1	38	10	False	False	8	1 - 2 - 2 - 1 - 1 - 1 - 1 - 1
+2025-04-07	1	Flixotide	1	30	9	False	False	4	2 - 3 - 3 - 1
+2025-04-07	1	Flixotide	2	29	10	False	False	6	2 - 1 - 3 - 2 - 1 - 1
+2025-04-07	2	Ventolin	1	53	10	True	False	6	2 - 2 - 1 - 1 - 3 - 1
+2025-04-07	2	Flixotide	1	26	10	False	False	4	3 - 3 - 3 - 1
+2025-04-07	2	Flixotide	2	37	10	False	False	5	2 - 1,5 - 4 - 2 - 1
+2025-04-08	1	Ventolin	1	23	10	False	False	5	3 - 2 - 3 - 1 - 1
+2025-04-08	1	Flixotide	1	32	10	False	False	5	2 - 2 - 3,5 - 1,5 - 2
+2025-04-08	1	Flixotide	2	36	10	False	False	7	1,5 - 2 - 1 - 2 - 2 - 1 - 1
+2025-04-08	2	Ventolin	1	38	10	False	False	4	3 - 3 - 2 - 2
+2025-04-08	2	Flixotide	1	34	10	False	False	4	3 - 5 - 1,5 - 1
+2025-04-08	2	Flixotide	2	21	10	False	False	2	5 - 5
+2025-04-09	1	Ventolin	1	60	10	True	False	6	1 - 0,5 - 1 - 2 - 3 - 1 - 2
+2025-04-09	1	Flixotide	1	28	9	False	False	3	1 - 5 - 3
+2025-04-09	1	Flixotide	2	38	10	False	False	5	2 - 1 - 1 - 5 - 1
+2025-04-09	2	Ventolin	1	29	10	False	False	2	8 - 2
+2025-04-09	2	Flixotide	1	25	10	False	False	2	6 - 4
+2025-04-09	2	Flixotide	2	41	10	False	False	6	2,5 - 2,5 - 2 - 1 - 0,5 - 2,5 - 1
+2025-04-10	1	Ventolin	1	32	10	False	False	6	1 - 3 - 1,5 - 2 - 2 - 1
+2025-04-10	1	Flixotide	1	35	10	False	False	4	1 - 4,5 - 1 - 4
+2025-04-10	1	Flixotide	2	33	10	False	False	4	2 - 4 - 2 - 2
+2025-04-10	2	Ventolin	1	38	8	False	True	6	2 - 1 - 2 - 1 - 1 - 1 
+2025-04-10	2	Flixotide	1	31	9	False	True	2	7 - 2 
+2025-04-10	2	Flixotide	2	31	10	False	True	3	3 - 4 - 3
+2025-04-11	1	Ventolin	1	31	10	False	False	7	1 - 2 - 1 - 1 - 2 - 1 - 2
+2025-04-11	1	Flixotide	1	30	10	False	False	4	4 - 1 - 3 - 2
+2025-04-11	1	Flixotide	2	29	10	False	False	5	1 - 3 - 1 - 4 - 1
+2025-04-11	2	Ventolin	1	42	10	False	False	5	6 - 1,5 - 1 - 1 - 1
+2025-04-11	2	Flixotide	1	23	10	False	False	1	10
+2025-04-11	2	Flixotide	2	30	10	False	False	4	5 - 1 - 2 - 2
+2025-04-12	1	Ventolin	1	28	10	False	False	7	2 - 2 - 2 - 1 - 1 - 1 - 1
+2025-04-12	1	Flixotide	1	30	10	False	False	3	6/7 - 2 - 2
+2025-04-12	1	Flixotide	2	28	10	False	False	4	3 - 5 - 1 - 1
+2025-04-12	2	Ventolin	1	25	10	False	False	3	7 - 2 - 1
+2025-04-12	2	Flixotide	1	26	10	False	False	1	10
+2025-04-12	2	Flixotide	2	36	10	False	False	3	6 - 3 - 1 
+2025-04-13	1	Ventolin	1	59	10	True	False	6	 1 - 0,5 - 2 - 3 - 1 - 1 - 2
+2025-04-13	1	Flixotide	1	33	10	False	False	3	2,5 - 4 - 4
+2025-04-13	1	Flixotide	2	26	10	False	False	5	3 - 1 - 3 - 1 - 2
+2025-04-13	2	Ventolin	1	34	10	False	False	5	2 - 3 - 2 - 2 - 1
+2025-04-13	2	Flixotide	1	24	10	False	False	3	6 - 1 - 3
+2025-04-13	2	Flixotide	2	24	10	False	False	2	9 - 1
+2025-04-14	1	Ventolin	1	27	10	False	False	5	2 - 2 - 3 - 2 - 1
+2025-04-14	1	Flixotide	1	24	10	False	False	2	5 - 5
+2025-04-14	1	Flixotide	2	23	10	False	False	4	3 - 1 - 5 - 1
+2025-04-17	1	Ventolin	1	29	10	False	True	5	3 - 2 - 1 - 1 - 3
+2025-04-17	2	Ventolin	1	36	10	False	True	8	1 - 1 - 1 - 2 - 1 - 1 - 1 - 2
+2025-04-18	1	Ventolin	1	33	10	False	True	8	1 - 1 - 1 - 1 - 1 - 2 - 1 - 2
+2025-04-19	1	Ventolin	1	31	9	False	True	8	1 - 1 - 1/2 -1 - 1 - 1 - 2 - 1
+2025-04-19	2	Ventolin	1	28	10	False	True	7	1 - 2 - 1 - 1 - 1 - 1 - 3
+2025-04-20	1	Ventolin	1	35	10	False	True	6	2 - 1 - 2 - 2 - 2 - 1
+2025-04-20	2	Ventolin	1	37	10	False	True	6	2 - 1 - 1 - 2 - 2 - 2
+2025-04-21	1	Ventolin	1	34	10	False	True	9	1 - 1 - 1 - 2 - 1 - 1 - 1 - 1 - 1 
+2025-04-21	2	Ventolin	1	30	10	False	False	7	2 - 1 - 1 - 2 - 2 - 1 - 1
+2025-04-21	2	Flixotide	1	30	10	False	False	5	4 - 2/3 - 2 - 1 - 1
+2025-04-21	2	Flixotide	2	34	9	False	False	5	4 - 1 - 1 - 2 - 1
+2025-04-22	1	Ventolin	1	32	10	False	False	9	1 - 1 - 1 - 2 - 1 - 1 - 1 - 1 - 1
+2025-04-22	1	Flixotide	1	31	10	False	False	3	6 - 3/4 - 1
+2025-04-22	1	Flixotide	2	30	10	False	False	6	1 - 2 - 1 - 4 - 1 - 1
+2025-04-22	2	Ventolin	1	27	10	False	False	6	4 - 1 - 2 - 1 - 1 - 1 
+2025-04-22	2	Flixotide	1	35	10	False	False	2	5 - 5
+2025-04-22	2	Flixotide	2	39	10	False	False	6	2 - 4 - 1 - 1 - 1 - 1
+2025-04-23	1	Ventolin	1	33	10	False	False	9	1 - 2 - 1 - 1 - 1 - 1 - 1 - 1 - 1
+2025-04-23	1	Flixotide	1	25	10	False	False	2	8 - 2
+2025-04-23	1	Flixotide	2	30	10	False	False	3	6 - 2 - 2
+2025-04-23	2	Ventolin	1	27	10	False	False	2	7 - 3
+2025-04-23	2	Flixotide	1	27	10	False	False	2	8 - 2
+2025-04-23	2	Flixotide	2	39	10	False	False	2	6/7 - 4
