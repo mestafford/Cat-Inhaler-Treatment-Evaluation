@@ -117,7 +117,7 @@ This includes data through 2025-04-23, excluding double puff data and data marke
 
 def score_continuity(num_blocks, combine_puffs=False):
     if combine_puffs == True:
-        if num_blocks <= 7:
+        if num_blocks <= 7: # Used value of 7 because the 25th percentile is 3.5
             return 3
         if num_blocks <= 10:
             return 2
@@ -125,13 +125,13 @@ def score_continuity(num_blocks, combine_puffs=False):
             return 1
         return 0
     else:
-        if num_blocks <= 3.5:
+        if num_blocks <= 3: # Three blocks or less, perfect score.
             return 3
-        if num_blocks <= 5:
+        if num_blocks <= 5: # Four or five blocks, score 2.
             return 2
-        if num_blocks <= 6:
+        if num_blocks <= 6: # Six blocks, score 1.
             return 1
-        return 0
+        return 0            # If more than six blocks, score 0.
 
 def score_time(seconds, combine_puffs=False):
     if combine_puffs:
