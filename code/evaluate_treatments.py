@@ -112,7 +112,7 @@ print(f"✅ Added blocks column to TSV: {tsv_path2}\n")
 # --- 4. Scoring functions ---------------------
 
 """Thresholds were defined using the 25th, 50th, and 75th percentiles of the puff data.
-These values include data through 2025-04-23, except those marked not-representative.
+This includes data through 2025-04-23, excluding double puff data and data marked not-representative and double puff data.
 """
 
 def score_continuity(num_blocks, combine_puffs=False):
@@ -157,7 +157,10 @@ def score_time(seconds, combine_puffs=False):
 # def score_behavior(v):
     return max(0, min(2, int(v)))
 
-# Scoring parameters for traffic light colors
+"""
+Scoring parameters for traffic light colors were defined using the 33rd and 66th percentiles of the puff data.
+This includes data through 2025-04-23, excluding double puff data and data marked not-representative and double puff data.
+"""
 green_threshold = 4
 yellow_threshold = 2
 
