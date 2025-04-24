@@ -88,13 +88,14 @@ Here’s a breakdown of the main files and folders in the repository:
 
 ```treatment_evaluation/
 ├── code/
-│   ├── evaluate_treatments.py     # Main script
-│   └── format_with_spacing.sh     # Optional helper script for readability
+│   ├── evaluate_treatments.py      # Main script
+│   └── format_with_spacing.sh      # Optional helper script for readability
 ├── data/
 │   ├── raw/
-│   │   └── daily_puff_log.xlsx    # 🔒 Ignored — not in repo
+│   │   └── daily_puff_log.xlsx     # 🔒 Ignored — not in repo
 │   └── processed/
-│       └── puff_data.tsv          # Extracted and cleaned version of the Excel data
+│       ├── puff_data.tsv           # Extracted and cleaned version of the Excel data
+│       └── puff_data_blocks.tsv    # Data with block counts added       
 ├── results/
 │   ├── days.tsv
 │   ├── inhalers.tsv
