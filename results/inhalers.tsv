@@ -1,4 +1,4 @@
-day	treatment	inhaler	avg_score_inh	colors_inhaler	combine_puffs
+day	treatment	inhaler	avg_score_inh	colors_inhaler	double_puff
 2025-03-10	1	Flixotide	3.0	yellow	False
 2025-03-10	2	Flixotide	2.5	yellow	False
 2025-03-11	1	Flixotide	4.5	green	False

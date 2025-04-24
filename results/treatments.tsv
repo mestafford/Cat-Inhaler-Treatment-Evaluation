@@ -1,4 +1,4 @@
-day	treatment	inhalers_registrados	avg_score_treat	colors_treatment	combine_puffs_in_treatment
+day	treatment	inhalers_registrados	avg_score_treat	colors_treatment	double_puff_in_treatment
 2025-03-10	1	1	3.0	yellow	False
 2025-03-10	2	1	2.5	yellow	False
 2025-03-11	1	2	4.0	green	True
