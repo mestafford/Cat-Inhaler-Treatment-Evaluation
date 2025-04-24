@@ -119,7 +119,7 @@ def score_continuity(num_blocks, combine_puffs=False):
     if combine_puffs == True:
         if num_blocks <= 7: # Used value of 7 because the 25th percentile is 3.5
             return 3
-        if num_blocks <= 10:
+        if num_blocks <= 8:
             return 2
         if num_blocks <= 12:
             return 1
@@ -127,7 +127,7 @@ def score_continuity(num_blocks, combine_puffs=False):
     else:
         if num_blocks <= 3: # Three blocks or less, perfect score.
             return 3
-        if num_blocks <= 5: # Four or five blocks, score 2.
+        if num_blocks <= 4: # Four or five blocks, score 2.
             return 2
         if num_blocks <= 6: # Six blocks, score 1.
             return 1
