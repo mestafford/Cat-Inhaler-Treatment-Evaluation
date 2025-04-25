@@ -47,9 +47,7 @@ print(f"✅ Excel converted to TSV with selected columns: {tsv_path}")
 def is_true(value):
     return str(value).strip().lower() in ('1', 'true', 'yes')
 
-# --- 3. Functions of parsing y scoring --------------------
-
-# Count the number of block (breaths taken sequencially) in a sequence of breaths
+# --- 4. Functions of parsing y scoring --------------------
 
 def parse_breaths(sequence_str):
     """
@@ -95,7 +93,7 @@ columns_to_export2 = [
 df2[columns_to_export2].to_csv(tsv_path2, sep="\t", index=False)
 print(f"✅ Added blocks column to TSV: {tsv_path2}\n")
 
-# --- 4. Scoring functions ---------------------
+# --- 5. Scoring functions ---------------------
 
 """Thresholds were defined using the 25th, 50th, and 75th percentiles of the puff data.
 This includes data through 2025-04-23, excluding double puff data and data marked not-representative and double puff data.
@@ -174,7 +172,7 @@ def score_puff(sequence, seconds, double_puff=False #, not_representative=False
         'colors': col
     }
 
-# --- 5. Read TSV with puff data -------------------------
+# --- 6. Read TSV with puff data -------------------------
 
 def process_file(path):
     puffs = []
@@ -214,7 +212,7 @@ def process_file(path):
             puffs.append(puff_data)
     return puffs
 
-# --- 6. Group puffs into logical inhalers -----------
+# --- 7. Group puffs into logical inhalers -----------
 
 def group_inhalers(puffs):
     groups = defaultdict(list)
@@ -247,7 +245,7 @@ def group_inhalers(puffs):
     inhalers_sorted = sorted(inhalers, key=lambda x: (x['day'], x['treatment'], x['inhaler']))
     return inhalers_sorted
 
-# --- 5. Colors per treatment ---------------
+# --- 8. Colors per treatment ---------------
 
 def group_treatments(inhalers):
     # Group by treatment
@@ -288,7 +286,7 @@ def group_treatments(inhalers):
 
         day_dict[day].extend(all_scores)
 
-# --- 7. Colors per day ---------------------
+# --- 9. Colors per day ---------------------
 
     daily_summary = []
     for day, scores in day_dict.items():
@@ -306,7 +304,7 @@ def group_treatments(inhalers):
 
     return summary, daily_summary
 
-# --- 8. Export results to TSV ---------------------
+# --- 10. Export results to TSV ---------------------
 
 # Choose columns to include and their order for the output of each TSV.
 
@@ -386,7 +384,7 @@ def export(in_tsv,
     print(f"✅ Exported: {out_puffs}_colored.tsv, {out_inh}_colored.tsv, "
           f"{out_treat}_colored.tsv, {out_day}_colored.tsv 🌈")
 
-# --- 9. Input -------------------------------
+# --- 11. Input -------------------------------
 
 if __name__ == "__main__":
     export(tsv_path2)
