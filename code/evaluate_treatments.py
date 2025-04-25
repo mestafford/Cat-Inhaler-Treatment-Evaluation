@@ -9,7 +9,7 @@ from collections import defaultdict
 
 excel_path = "data/raw/daily_puff_log.xlsx"
 tsv_path   = "data/processed/puff_data.tsv"
-tsv_path2  = "data/processe
+tsv_path2  = "data/processed/puff_data_blocks.tsv"
 
 # Columns to export from Excel to TSV
 columns_to_export = [
