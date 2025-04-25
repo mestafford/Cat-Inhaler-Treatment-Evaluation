@@ -152,8 +152,8 @@ yellow_threshold = 2
 
 def score_puff(sequence, seconds, double_puff=False #, not_representative=False
                ): 
+    # All data is included for scoring
     total, num_blocks = parse_breaths(sequence)
-    #num_blocks = len(valid_breaths)
     c = score_continuity(num_blocks)
     t = score_time(seconds, double_puff)
     s = c + t
@@ -308,7 +308,7 @@ def group_treatments(inhalers):
 
 # --- 8. Export results to TSV ---------------------
 
-# Choose columns to include and their order for the output of each tsv.
+# Choose columns to include and their order for the output of each TSV.
 
 puff_columns = [
     'day', 'treatment', 'inhaler', 'puff',
