@@ -9,15 +9,7 @@ from collections import defaultdict
 
 excel_path = "data/raw/daily_puff_log.xlsx"
 tsv_path   = "data/processed/puff_data.tsv"
-tsv_path2  = "data/processed/puff_data_blocks.tsv"
-
-# All necessary columns in Excel for analysis
-expected_columns = [
-    "day", "treatment", "inhaler", "puff", 
-    "seconds", "double_puff", 
-    "not_representative", "sequence"
-    # , "behavior"
-]
+tsv_path2  = "data/processe
 
 # Columns to export from Excel to TSV
 columns_to_export = [
@@ -40,15 +32,9 @@ except Exception as e:
     exit(1)
 
 # Verify that all necessary columns exist
-missing = [c for c in expected_columns if c not in df.columns]
+missing = [c for c in columns_to_export if c not in df.columns]
 if missing:
     print(f"❌ Missing columns in the Excel: {missing}")
-    exit(1)
-
-# Verify that the columns to be exported exist
-missing_export = [c for c in columns_to_export if c not in df.columns]
-if missing_export:
-    print(f"❌ Missing columns to be exported: {missing_export}")
     exit(1)
 
 # --- 2. Save only the selected columns to TSV ---
