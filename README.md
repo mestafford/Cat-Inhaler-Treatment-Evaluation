@@ -13,7 +13,7 @@ An optional third criterion, **Behavior**, can be included to evaluate how well 
 
 The script reads an Excel document where the user records data day by day. The following columns are required:
 
-- `day`
+- `date`
 - `treatment`
 - `inhaler`
 - `puff`
@@ -29,7 +29,7 @@ The script expects to read data from an Excel sheet named **"Puffs"**. If your E
 
 ```python
 # Change this if your sheet has a different name
-df = pd.read_excel(excel_path, sheet_name="Puffs")
+df = pd.read_excel(excel_path, sheet_name = 'Puffs')
 ```
 
 ## Evaluation Criteria
