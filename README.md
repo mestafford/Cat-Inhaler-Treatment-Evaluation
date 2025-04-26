@@ -22,7 +22,11 @@ The script reads an Excel document where the user records data day by day. The f
 - `double_puff`
 - `not_representative`
 
-You can add additional columns (e.g., notes) that the script will ignore. Sequences of breaths should be written like this: `1 - 3 - 4 - 2`, where each number represents the number of breaths taken consecutively before the cat removed its face from the inhaler.
+You can add additional columns (e.g., notes, changes) that the script will ignore.
+
+Dates should be in the format `YYYY-MM-DD`.
+
+Sequences of breaths should be written like this: `1 - 3 - 4 - 2`, where each number represents the number of breaths taken consecutively before the cat removed its face from the inhaler.
 
 ⚠️ Note:
 The script expects to read data from an Excel sheet named **"Puffs"**. If your Excel file uses a different sheet name (like the default `Sheet1`), you can change the value of the `sheet_name` parameter in the script:
