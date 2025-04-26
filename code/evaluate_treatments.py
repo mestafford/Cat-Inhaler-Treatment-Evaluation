@@ -339,7 +339,6 @@ def save_both_versions(df, columns, base_filename):
     os.makedirs(os.path.dirname(base_filename), exist_ok=True)
 
     # Save colored TSV
-    print("Columns to save:", columns)
     df_colored = df[[c for c in columns if c in df.columns]]
     df_colored.to_csv(base_filename + '_colored.tsv', sep = '\t', index = False)
 
