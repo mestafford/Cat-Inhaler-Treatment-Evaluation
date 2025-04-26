@@ -120,17 +120,17 @@ def score_time(seconds, double_puff=False):
     if double_puff:
         if seconds <= 56: # Time for two puffs, within 56 seconds, perfect score.
             return 3
-        if seconds <= 62: # Time for two puffs, within 56 to 62 seconds, score 2.
+        if seconds <= 62: # Time for two puffs, 56 to 62 seconds, score 2.
             return 2
-        if seconds <= 70: # Time for two puffs, within 62 to 70 seconds, score 1.
+        if seconds <= 70: # Time for two puffs, 62 to 70 seconds, score 1.
             return 1
         return 0          # If more than 70 seconds, score 0.
     else:
         if seconds <= 28: # Time for one puff, within 28 seconds, perfect score.
             return 3
-        if seconds <= 31: # Time for one puff, within 28 to 31 seconds, score 2.
+        if seconds <= 31: # Time for one puff, 28 to 31 seconds, score 2.
             return 2
-        if seconds <= 35: # Time for one puff, within 32 to 35 seconds, score 1.
+        if seconds <= 35: # Time for one puff, 32 to 35 seconds, score 1.
             return 1
         return 0          # If more than 35 seconds, score 0.
     
